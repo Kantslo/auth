@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 import User from "../models/User.js"
 import addUserSchema from "../schemas/add-user-schema.js";
-import { sendVerificationLink }  from "../mail/edge";
+import { sendVerificationLink }  from "../mail/edge.js";
 
 export const createUser = async (req: Request, res: Response) => {
 
@@ -30,7 +30,7 @@ export const createUser = async (req: Request, res: Response) => {
       password: hashedPassword,
     });
 
-    newUser.save();
+    await newUser.save();
     await sendVerificationLink(email, name, "https://auth-production-545c.up.railway.app/verify");
     return res.status(201).json(newUser)
   } catch (error) {
