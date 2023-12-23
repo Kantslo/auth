@@ -16,10 +16,10 @@ export const createUser = async (req: Request, res: Response) => {
     const { value, error } = validator.validate(body);
 
     if (error) {
-      return res.status(401).json(error.details)
+      return res.status(401).json(error.details);
     }
 
-    const { name, email, password } = value
+    const { name, email, password } = value;
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
