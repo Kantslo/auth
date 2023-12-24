@@ -46,7 +46,7 @@ export const login = async (req: Request, res: Response) => {
       { email },
       {
         _id: 0,
-        __v: 0,
+        _v: 0,
       }
     ).select("+password");
     
